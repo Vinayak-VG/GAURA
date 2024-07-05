@@ -7,6 +7,16 @@
   <meta name="keywords" content="GAURA, Radiance Fields, GenNeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GAURA: Generalizable Approach for Unified Restoration and Rendering of Arbitrary Views</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
 
   <!-- Global site tag (gtag.js) - Google Analytics
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
@@ -257,7 +267,7 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
         <h2 class="title is-3">Degradation-aware Latent Module</h2>
         <div class="content has-text-justified">
           <p>
-              We encode degradation-specific information into $M$ latent codes $\{\Mat{L}_{i}\}_{i=1}^{M}$ that interact with the remaining parts of the network whose parameters are shared irrespective of the input imperfection type. 
+              We encode degradation-specific information into $M$ latent codes  <p>\{\Mat{L}_{i}\}_{i=1}^{M}</p>  that interact with the remaining parts of the network whose parameters are shared irrespective of the input imperfection type. 
   
           </p>
         </div>
