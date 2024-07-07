@@ -272,7 +272,9 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
         <h2 class="title is-3">Adaptive Residual Module</h2>
         <div class="content has-text-justified">
           <p>
-            We propose to add a residual feature S obtained from the input view closest to the target view to be rendered and reformulate
+            While we use a set of degradation-aware latents to encode imperfection-specific information, they are independent of the actual input captures. 
+            We argue that various variations exist within each corruption type, making the previous static approach potentially suboptimal. Therefore, we propose adding a residual feature S obtained from the input view closest to the target view to be rendered. 
+            We reformulate this by using pool(⋅) to denote the global average pooling operation, and Fresidue  to denote a small convolutional network that encodes the input view closest to the target viewing angle Inearest.
   
           </p>
         </div>
