@@ -257,7 +257,11 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
         <h2 class="title is-3">Degradation-aware Latent Module</h2>
         <div class="content has-text-justified">
           <p>
-              We encode degradation-specific information into $M$ latent codes  \{\Mat{L}_{i}\}_{i=1}^{M}  that interact with the remaining parts of the network whose parameters are shared irrespective of the input imperfection type. 
+              
+          Existing work on novel view synthesis and restoration often explicitly models physical degradation into the rendering equation, which lacks generalization across different degradation types.
+          We propose an alternative approach, implicitly modeling image formation under various corruption types into learnable parameters. Instead of creating multiple network clones for each degradation type,
+          we encode degradation-specific information into latent codes that interact with shared network parameters. 
+          Inspired by HyperNetworks, these latent codes map to weights of an MLP for degradation-specific transformations. This Degradation-aware Latent Module (DLM) efficiently captures different imperfections with minimal extra parameters. 
   
           </p>
         </div>
