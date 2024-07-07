@@ -292,7 +292,9 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
         <h2 class="title is-3">Degradation-aware Generalizable Novel View Synthesis</h2>
         <div class="content has-text-justified">
           <p>
-            We propose to add a residual feature S obtained from the input view closest to the target view to be rendered and reformulate
+            We build our method on the recent SOTA GNVS technique, GNT, which follows a three-stage pipeline involving a UNet-based feature extractor, a view transformer, and a ray transformer. 
+            To enhance these components with degradation-specific priors, we integrate DLM blocks at each decoder level of the UNet, enriching input features with information about input degradations.
+            In the view transformer, we replace the vanilla MLP feature mappings with DLM modules to incorporate degradation priors into the scene representation. Finally, in the ray transformer, we use DLM modules for value feature mapping, ensuring that the learned aggregation represents a generalized volume rendering process, while keeping the underlying scene geometry independent of input imperfections.
   
           </p>
         </div>
