@@ -24,7 +24,7 @@ This repository is built based on GNT's [offical repository](https://github.com/
 
 Neural rendering methods can achieve near-photorealistic image synthesis of scenes from posed input images. However, when the images are imperfect, e.g., captured in very low-light conditions, state- of-the-art methods fail to reconstruct high-quality 3D scenes. Recent approaches have tried to address this limitation by modeling various degradation processes in the image formation model; however, this limits them to specific image degradations. In this paper, we propose a general- izable neural rendering method that can perform high-fidelity novel view synthesis under several degradations. Our method, GAURA, is learning- based and does not require any test-time scene-specific optimization. It is trained on a synthetic dataset that includes several degradation types. GAURA outperforms state-of-the-art methods on several benchmarks for low-light enhancement, dehazing, deraining, and on-par for motion deblurring. Further, our model can be efficiently fine-tuned to any new incoming degradation using minimal data. We thus demonstrate adapta- tion results on two unseen degradations, desnowing and removing defocus blur. 
 
-![teaser](assets/Teaser.pdf)
+![teaser](assets/teaserv5-1.png)
 
 ## Installation
 
