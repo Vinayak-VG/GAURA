@@ -1,0 +1,5 @@
+CUDA_VISIBLE_DEVICES=0 python3 -W ignore eval_transibr.py --config configs/transibr_bigger_full.txt --expname restore_concat_many2one_dark_underwater_noise_noaux_newarch --run_val --eval_dataset llff_noise --folder_name noise --ckpt_path /data/restoration_nerf/out/restore_concat_many2one_dark_underwater_noise_noaux_newarch/model_150000.pth --typeofmodel concat
+
+CUDA_VISIBLE_DEVICES=1 python3 -W ignore eval_transibr.py --config configs/transibr_bigger_full.txt --expname restore_noembed_many2one_dark_underwater_noise_noaux_plaingnt --run_val --eval_dataset llff_noise --folder_name noise --ckpt_path /data/restoration_nerf/out/restore_noembed_many2one_dark_underwater_noise_noaux_plaingnt/model_150000.pth --typeofmodel vanilla
+
+CUDA_VISIBLE_DEVICES=0 python3 -W ignore eval_transibr.py --config configs/transibr_bigger_full.txt --expname restore_train_genexpt_dark_noise_rain_motion_haze_nostrgth_dyn_emb_wgt --run_val --eval_dataset llff_noise --folder_name noise --typeofmodel nostrgth_dyndeg_emb_wgt --viewtrans_depth 8 --rendtrans_depth 8

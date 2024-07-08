@@ -1,0 +1,37 @@
+### INPUT
+expname = transibr_bigger_full
+rootdir = ./
+render_stride = 2
+distributed = False
+
+## dataset
+train_dataset = llff+ibrnet_collected
+dataset_weights = [0.6, 0.4]
+eval_dataset = llff_test
+eval_scenes = [fern, fortress, orchids, flower, horns, room, leaves, trex]
+
+### TRAINING
+N_rand = 512
+lrate_feature = 0.0005
+lrate_mlp = 0.0005
+lrate_decay_factor = 0.5
+lrate_decay_steps = 10000
+coarse_only = True
+net = trans_ibr
+viewtrans_depth = 8
+rendtrans_depth = 8
+
+### TESTING
+chunk_size = 2000
+llffhold = 8
+
+### RENDERING
+N_importance = 0
+N_samples = 128
+inv_uniform = True
+white_bkgd = False
+
+### CONSOLE AND TENSORBOARD
+i_img = 50000
+i_print = 100
+i_weights = 50000
