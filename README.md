@@ -158,7 +158,7 @@ bash eval_scripts/eval_real_motion.sh
 
 To evaluate Haze Removal Results on REVIDE-Haze Real Dataset
 ```bash
-eval_scripts/eval_revidehaze.sh 
+bash eval_scripts/eval_revidehaze.sh 
 ```
 
 The code has been recently tidied up for release and could perhaps contain tiny bugs. Please feel free to open an issue.
