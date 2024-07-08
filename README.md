@@ -32,7 +32,11 @@ Clone this repository:
 
 ```bash
 git clone https://github.com/Vinayak-VG/GAURA.git
-cd GSN/
+cd GAURA/
+git submodule update --init --recursive
+cd data_generation/MiDAS/weights
+wget https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_beit_large_512.pt
+wget https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_large_384.pt
 ```
 
 The code is tested with python 3.8, cuda == 11.1, pytorch == 1.10.1. Additionally dependencies include: 
@@ -121,7 +125,7 @@ For Rain and Snow, we manually collected videos from Youtube and ran COLMAP to o
 
 For Haze and Defocus degradations, we require depth maps that are precomputed and saved to save time while training. 
 ```bash
-python3 generate_depths.py --data_dir data/
+python3 data_generation/generate_depths.py --data_dir data/
 ```
 
 ## Usage
@@ -133,6 +137,7 @@ If you wish to start training from the pre-trained weights of GNT, then you can 
 ```bash
 python3 -W ignore train.py --config configs/transibr_bigger_full.txt --expname generalise_expt --n_iters 400000 --N_rand 512 --i_img 10000 --i_weights 10000 --typeofmodel yesstrgth_dyndeg_emb_wgt_strenc -- pretrained_allweights --ft_corrup gen --train_dataset llff_dyn+ibrnet_collected_dyn --eval_dataset llff_test_dyn --sample_mode center
 ```
+
 ### Evaluation
 
 You could also download our pre-train weights for direct model evaluation from [(google drive)](https://drive.google.com/file/d/1ShjmESBCGdmewwOtopBwOJ7hEqwYY4D0/view?usp=sharing)
