@@ -257,7 +257,11 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
         <h2 class="title is-3">Degradation-aware Latent Module</h2>
         <div class="content has-text-justified">
           <p>
-              We encode degradation-specific information into $M$ latent codes  \{\Mat{L}_{i}\}_{i=1}^{M}  that interact with the remaining parts of the network whose parameters are shared irrespective of the input imperfection type. 
+              
+          Existing work on novel view synthesis and restoration often explicitly models physical degradation into the rendering equation, which lacks generalization across different degradation types.
+          We propose an alternative approach, implicitly modeling image formation under various corruption types into learnable parameters. Instead of creating multiple network clones for each degradation type,
+          we encode degradation-specific information into latent codes that interact with shared network parameters. 
+          Inspired by HyperNetworks, these latent codes map to weights of an MLP for degradation-specific transformations. This Degradation-aware Latent Module (DLM) efficiently captures different imperfections with minimal extra parameters. 
   
           </p>
         </div>
@@ -265,6 +269,39 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
     </div>
     <!--/  Degradation-aware Latent Module. -->
 
+
+    <!-- Adaptive  Residual Module. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Adaptive Residual Module</h2>
+        <div class="content has-text-justified">
+          <p>
+            While we use a set of degradation-aware latents to encode imperfection-specific information, they are independent of the actual input captures. 
+            We argue that various variations exist within each corruption type, making the previous static approach potentially suboptimal. Therefore, we propose adding a residual feature S obtained from the input view closest to the target view to be rendered. 
+            We reformulate this by using pool(⋅) to denote the global average pooling operation, and Fresidue  to denote a small convolutional network that encodes the input view closest to the target viewing angle Inearest.
+  
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/  Adaptive  Residual Module. -->
+
+     <!-- Degradation-aware Generalizable Novel View Synthesis. -->
+     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Degradation-aware Generalizable Novel View Synthesis</h2>
+        <div class="content has-text-justified">
+          <p>
+            We build our method on the recent SOTA GNVS technique, GNT, which follows a three-stage pipeline involving a UNet-based feature extractor, a view transformer, and a ray transformer. 
+            To enhance these components with degradation-specific priors, we integrate DLM blocks at each decoder level of the UNet, enriching input features with information about input degradations.
+            In the view transformer, we replace the vanilla MLP feature mappings with DLM modules to incorporate degradation priors into the scene representation. Finally, in the ray transformer, we use DLM modules for value feature mapping, ensuring that the learned aggregation represents a generalized volume rendering process, while keeping the underlying scene geometry independent of input imperfections.
+  
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/  Degradation-aware Generalizable Novel View Synthesis. -->
+</section>
 <!-- 
     <section class="hero is-light is-small">
       <div class="hero-body">
@@ -436,10 +473,10 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
       </div>
     </section>
     
-    
+    Comparison videos with other All-in-one Degradation methods
      -->
 
-    <div class="w3-container" id="video-comparison">
+    <!-- <div class="w3-container" id="video-comparison">
       <a href="#video-comparison"><h2><u>Comparison videos with other All-in-one Degradation methods</u></h2></a>
 
       <h4>Play the videos in the fullscreen mode for the best view</h4>
@@ -450,7 +487,7 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
                   <source src="./static/videos/still2.mp4" type="video/mp4">
                   Your browser does not support the video tag.
               </video>
-              <figcaption class="caption">Dark comparison</figcaption>
+              <figcaption class="caption">Dark</figcaption>
           </figure>
           <figure style="width: 100%">
               <video id="video-comparison2" class="video-comparisons-defocus deblurring" muted controls>
@@ -481,29 +518,89 @@ GAURA outperforms state-of-the-art methods on several benchmarks for low-light e
               <figcaption class="caption">Desnowing</figcaption>
           </figure>
       </div>
-  </div>
+  </div> -->
 
   <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Abstract. -->
-      <div class="hero-body">
-        <img src="./static/images/gallery.jpg" alt="results gallery" id="fig-gallery" style="width: 100%"/>
-        <h2 class="subtitle has-text-centered">
-          Results on various corruptions
-        </h2>
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparison videos with other All-in-one Degradation methods</h2>
+        <h4>Play the videos in the fullscreen mode for the best view</h4>
+        <div>
+          <figure style="width: 100%">
+              <video id="video-comparison1" class="video-comparisons-dark-still2" muted controls>
+                  <source src="./static/videos/still4.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+              <figcaption class="caption">Dark</figcaption>
+          </figure>
+          <figure style="width: 100%">
+              <video id="video-comparison2" class="video-comparisons-defocus deblurring" muted controls>
+                  <source src="./static/videos/caps2.mp4">
+                  Your browser does not support the video tag.
+              </video>
+              <figcaption class="caption">Defocus deblurring</figcaption>
+          </figure>
+          <figure style="width: 100%">
+              <video id="video-comparison3" class="video-comparisons-motion deblurring" muted controls>
+                  <source src="./static/videos/blurbasket.mp4">
+                  Your browser does not support the video tag.
+              </video>
+              <figcaption class="caption">Motion Deblurring</figcaption>
+          </figure>
+          <figure style="width: 100%">
+              <video id="video-comparison4" class="video-comparisons-re10k" muted controls>
+                  <source src="./static/videos/scene21_ppc.mp4">
+                  Your browser does not support the video tag.
+              </video>
+              <figcaption class="caption">Deraining</figcaption>
+          </figure>
+          <figure style="width: 100%">
+              <video id="video-comparison5" class="video-comparisons-re10k" muted controls>
+                  <source src="./static/videos/snow_video.mp4">
+                  Your browser does not support the video tag.
+              </video>
+              <figcaption class="caption">Desnowing</figcaption>
+          </figure>
       </div>
       </div>
-      <!--/ Abstract. -->
-  
-      <!-- Model arch. -->
-      <div class="container is-max-desktop">
-        <!-- Abstract. -->
-        <div class="hero-body">
-          <img src="./static/images/multi-corr.png" alt="results gallery" id="fig-gallery" style="width: 100%"/>
-          <h2 class="subtitle has-text-centered">
-            Gaura can also restore and render novel views from images corrupted with multiple corruptions
-          </h2>
+      </div>
+    </div>
+    
+
+    
+
+</section>
+
+
+
+
+
+  <section class="section">
+    
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Results on various corruptions</h2>
+          <div class="w3-container" id="Gaura-model">
+            <img src="./static/images/gallery.jpg" alt="results gallery" id="fig-gallery" style="width: 100%"/>
         </div>
+        </div>
+      </div>
+      
+
+      
+      <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Results on Restoring Multiple corruptions</h2>
+            <div class="w3-container" id="Gaura-model">
+              <!-- <a href="#Gaura-model"><h2><u>GAURA - Model Architecture</u></h2></a> -->
+    
+              <img src="./static/images/multi-corr.png" alt="results gallery" id="fig-gallery" style="width: 100%"/>
+              <h2 class="subtitle has-text-centered">
+                Gaura can also restore and render novel views from images corrupted with multiple corruption maintaining view consistency.
+              </h2>
+          </div>
+          </div>
         </div>
   </section>
 <section class="section" id="BibTeX">
