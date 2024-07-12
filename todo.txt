@@ -1,0 +1,6 @@
+1. Readme with proper instructions to train and infer
+2. Data Generation Code cleaning and writing the data generation part properly
+3. Cleaning of Eval Scripts and making them more robust with $1 command line prompt and create one eval script to run all of them
+4. Clean codes in IBRNET Folder and change name IBRNET to GAURA
+5. Clean Eval_Transibr.py
+6. Clean finetune.sh, render.sh and run.sh

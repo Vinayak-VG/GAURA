@@ -1,0 +1,3 @@
+[submodule "data_generation/MiDAS"]
+	path = data_generation/MiDAS
+	url = https://github.com/isl-org/MiDaS.git
