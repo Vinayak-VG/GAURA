@@ -301,41 +301,41 @@ def main():
                 save_path = os.path.join(cor_dir, img_name)
                 create_dark(rgb_file, save_path, 30, 1)
 
-                cor_dir = dir_path + "_motion"
-                os.makedirs(cor_dir, exist_ok=True)
-                save_path = os.path.join(cor_dir, img_name)
-                size = np.random.randint(5, 26)
-                angle_list = list(range(0, 10)) + list(range(80, 100)) + list(range(170, 180))
-                angle = random.choice(angle_list)
-                motion_gen_blur(rgb_file, save_path, size, angle)             
+                # cor_dir = dir_path + "_motion"
+                # os.makedirs(cor_dir, exist_ok=True)
+                # save_path = os.path.join(cor_dir, img_name)
+                # size = np.random.randint(5, 26)
+                # angle_list = list(range(0, 10)) + list(range(80, 100)) + list(range(170, 180))
+                # angle = random.choice(angle_list)
+                # motion_gen_blur(rgb_file, save_path, size, angle)             
 
-                depth = get_depth(rgb_file, depth_net)
-                depth = 1 - depth
-                cor_dir = dir_path + "_depth"
-                os.makedirs(cor_dir, exist_ok=True)
-                save_path = os.path.join(cor_dir, img_name)
-                cv2.imwrite(save_path, depth*255.)
+                # depth = get_depth(rgb_file, depth_net)
+                # depth = 1 - depth
+                # cor_dir = dir_path + "_depth"
+                # os.makedirs(cor_dir, exist_ok=True)
+                # save_path = os.path.join(cor_dir, img_name)
+                # cv2.imwrite(save_path, depth*255.)
 
-                cor_dir = dir_path + "_haze_test"
-                os.makedirs(cor_dir, exist_ok=True)
-                save_path = os.path.join(cor_dir, img_name)
-                depth_path = rgb_file.replace("images_2", "images_2_depth")
-                gen_haze(rgb_file, save_path, depth_path, 2.5, 128)
+                # cor_dir = dir_path + "_haze_test"
+                # os.makedirs(cor_dir, exist_ok=True)
+                # save_path = os.path.join(cor_dir, img_name)
+                # depth_path = rgb_file.replace("images_2", "images_2_depth")
+                # gen_haze(rgb_file, save_path, depth_path, 2.5, 128)
 
-                cor_dir = dir_path + "_noise"
-                os.makedirs(cor_dir, exist_ok=True)
-                save_path = os.path.join(cor_dir, img_name)
-                burst_noise(rgb_file, save_path, gain=24, white_level=1)
+                # cor_dir = dir_path + "_noise"
+                # os.makedirs(cor_dir, exist_ok=True)
+                # save_path = os.path.join(cor_dir, img_name)
+                # burst_noise(rgb_file, save_path, gain=24, white_level=1)
 
-                cor_dir = dir_path + "_rain"
-                os.makedirs(cor_dir, exist_ok=True)
-                save_path = os.path.join(cor_dir, img_name)
-                create_rain(rgb_file, save_path, -80, -4)
+                # cor_dir = dir_path + "_rain"
+                # os.makedirs(cor_dir, exist_ok=True)
+                # save_path = os.path.join(cor_dir, img_name)
+                # create_rain(rgb_file, save_path, -80, -4)
 
-                cor_dir = dir_path + "_snow"
-                os.makedirs(cor_dir, exist_ok=True)
-                save_path = os.path.join(cor_dir, img_name)
-                snow_sim(rgb_file, save_path, density=0.07, density_uniform=0.9, flake_size=0.7, flake_size_uniformity=0.4, angle=-20, speed=0.01)
+                # cor_dir = dir_path + "_snow"
+                # os.makedirs(cor_dir, exist_ok=True)
+                # save_path = os.path.join(cor_dir, img_name)
+                # snow_sim(rgb_file, save_path, density=0.07, density_uniform=0.9, flake_size=0.7, flake_size_uniformity=0.4, angle=-20, speed=0.01)
 
                 print(i, end="\r")
 
