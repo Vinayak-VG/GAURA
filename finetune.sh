@@ -32,4 +32,4 @@
 
 # CUDA_VISIBLE_DEVICES=1 python3 -W ignore train.py --config configs/transibr_bigger_full.txt --expname finetune_snow_base_model --n_iters 50000 --i_img 10000 --N_rand 512 --i_weights 10000 --finetune --ft_corrup snow --typeofmodel nostrgth_dyndeg_emb_wgt --viewtrans_depth 8 --rendtrans_depth 8 --train_dataset llff_dyn+ibrnet_collected_dyn --eval_dataset llff_test_dyn
 
-CUDA_VISIBLE_DEVICES=0 python3 -W ignore train.py --config configs/transibr_bigger_full.txt --expname finetune_defocus_finalpaper --n_iters 50000 --i_img 10000 --N_rand 256 --i_weights 1000 --finetune --ft_corrup defocus --typeofmodel nostrgth_dyndeg_emb_wgt --viewtrans_depth 8 --rendtrans_depth 8 --train_dataset llff_test_dyn --eval_dataset llff_test_dyn
+CUDA_VISIBLE_DEVICES=0 python3  -W ignore train.py --config configs/transibr_bigger_full.txt --expname finetune_defocus_finalpaper --n_iters 50000 --i_img 10000 --N_rand 256 --i_weights 1000 --finetune --ft_corrup defocus --typeofmodel nostrgth_dyndeg_emb_wgt --viewtrans_depth 8 --rendtrans_depth 8 --train_dataset llff_test_dyn --eval_dataset llff_test_dyn

@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0 python3 -W ignore eval_transibr.py --config configs/transibr_bigger_full.txt --expname gaura_exp --run_val --eval_dataset scene_test --eval_scenes haze --typeofmodel yesstrgth_dyndeg_emb_wgt_strenc --viewtrans_depth 8 --rendtrans_depth 8 --folder_name scene_test_haze --N_samples 16 

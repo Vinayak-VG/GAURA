@@ -132,8 +132,9 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
         _minify(basedir, resolutions=[[height, width]])
         sfx = "_{}x{}".format(width, height)
     else:
-        factor = 1
-        sfx = "_{}".format(factor)
+        # factor = 1
+        # sfx = "_{}".format(factor)
+        sfx = ""
 
     imgdir = os.path.join(basedir, "images" + sfx)
     if not os.path.exists(imgdir):

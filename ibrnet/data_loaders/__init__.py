@@ -57,6 +57,7 @@ from .llff_test_dyn import *
 from .realsnow import *
 from .llff_test_multi import *
 from .nannerf import *
+from .scene_test import *
 
 dataset_dict = {
     "spaces": SpacesFreeDataset,
@@ -100,5 +101,6 @@ dataset_dict = {
     "realsnow": RealSnowDataloader,
     "multi_corr": NeRFLLFFMultiDataset, 
     "nannerf": NANNeRFNoiseDataloader,
+    "scene_test": SceneTestDataloader,
 }
 

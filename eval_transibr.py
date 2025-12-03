@@ -168,7 +168,7 @@ def eval(args):
             torch.cuda.empty_cache()
             indx += 1
             end = time.time()
-            print(end - start)
+            # print(end - start)
             
     print(round(np.mean(psnr_mets), 2))
     print(round(np.mean(ssim_mets), 3))

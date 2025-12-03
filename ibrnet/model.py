@@ -17,24 +17,11 @@ import torch
 import os
 from ibrnet.mlp_network import IBRNet
 import ibrnet.transformer_network
-import ibrnet.transformer_network_finetune_final
-import ibrnet.transformer_network_nostrgth_dyndeg_emb_wgt
-import ibrnet.transformer_network_yesstrgth_dyndeg_emb_wgt_strenc
-import ibrnet.transformer_network_normal_mask
-import ibrnet.transformer_network_gnt
 from natsort import natsorted
 
 import ibrnet.feature_network
-import ibrnet.feature_network_nostrgth_dyndeg_emb_wgt
-import ibrnet.feature_network_nostrgth_dyndeg_emb_wgt_multi
-import ibrnet.feature_network_yesstrgth_dyndeg_emb_wgt_strenc
-import ibrnet.feature_network_normal_mask
 def de_parallel(model):
     return model.module if hasattr(model, "module") else model
-import ibrnet.feature_network_nostrgth_dyndeg
-import ibrnet.transformer_network_nostrgth_dyndeg
-import ibrnet.feature_network_gnt
-
 
 ########################################################################################################################
 # creation/saving/loading of nerf
@@ -151,7 +138,7 @@ class IBRNetModel(object):
                     ret_alpha=args.N_importance > 0,
                 ).to(device)
             elif args.typeofmodel == "yesstrgth_dyndeg_emb_wgt_strenc":
-                self.net_coarse = ibrnet.transformer_network_yesstrgth_dyndeg_emb_wgt_strenc.TransIBRNet(
+                self.net_coarse = ibrnet.transformer_network.TransIBRNet(
                     args,
                     in_feat_ch=self.args.coarse_feat_dim,
                     posenc_dim=3 + 3 * 2 * 10,
@@ -233,7 +220,7 @@ class IBRNetModel(object):
                 coarse_only=self.args.N_importance == 0,
             ).cuda()
         elif args.typeofmodel == "yesstrgth_dyndeg_emb_wgt_strenc":
-            self.feature_net = ibrnet.feature_network_yesstrgth_dyndeg_emb_wgt_strenc.ResUNet(
+            self.feature_net = ibrnet.feature_network.ResUNet(
                 coarse_out_ch=self.args.coarse_feat_dim,
                 fine_out_ch=self.args.fine_feat_dim,
                 coarse_only=self.args.N_importance == 0,

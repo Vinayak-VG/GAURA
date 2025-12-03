@@ -14,6 +14,7 @@
 This repository is built based on GNT's [offical repository](https://github.com/VITA-Group/GNT)
 
 <ul>
+  <li><span style="color: red">Code is Ready!</span> The code has been cleaned up for training and evaluation. 
   <li><span style="color: red">News!</span> GAURA is accepted at ECCV 2024 🎉. 
   <!-- Our updated cross-scene trained <a href="https://github.com/VITA-Group/GNT#pre-trained-models">checkpoint</a> should generalize to complex scenes, and even achieve comparable results to SOTA per-scene optimized methods without further tuning! -->
   </li>
@@ -123,7 +124,8 @@ For Rain and Snow, we manually collected videos from Youtube and ran COLMAP to o
 
 ## Data Preparation
 
-For Haze and Defocus degradations, we require depth maps that are precomputed and saved to save time while training. 
+For Haze and Defocus degradations, we require depth maps that are precomputed and saved to save time while training. Download the weights from [(Github Release)](https://github.com/Vinayak-VG/GAURA/releases/tag/release) and store them in data_generation/MiDaS/weights
+
 ```bash
 python3 data_generation/generate_depths.py --data_dir data/
 ```
@@ -135,14 +137,20 @@ python3 data_generation/generate_depths.py --data_dir data/
 If you wish to start training from the pre-trained weights of GNT, then you can create a folder in out/ with the name of the experiment and then put the pre-trained weights in the folder. 
 
 ```bash
-python3 -W ignore train.py --config configs/transibr_bigger_full.txt --expname generalise_expt --n_iters 400000 --N_rand 512 --i_img 10000 --i_weights 10000 --typeofmodel yesstrgth_dyndeg_emb_wgt_strenc -- pretrained_allweights --ft_corrup gen --train_dataset llff_dyn+ibrnet_collected_dyn --eval_dataset llff_test_dyn --sample_mode center
+CUDA_VISIBLE_DEVICES=0 python3 -W ignore train.py --config configs/transibr_bigger_full.txt --expname gaura_exp --n_iters 200000 --N_rand 324 --i_img 10000 --i_weights 10000 --typeofmodel yesstrgth_dyndeg_emb_wgt_strenc --pretrained_allweights --viewtrans_depth 8 --rendtrans_depth 8 --ft_corrup gen --train_dataset llff_dyn+ibrnet_collected_dyn --eval_dataset llff_test_dyn --sample_mode center --N_samples 64
 ```
 
 ### Evaluation
 
-You could also download our pre-train weights for direct model evaluation from [(google drive)](https://drive.google.com/file/d/1ShjmESBCGdmewwOtopBwOJ7hEqwYY4D0/view?usp=sharing)
+You could also download our pre-train weights for direct model evaluation from [(Github Release)](https://github.com/Vinayak-VG/GAURA/releases/tag/release)
+To evaluate on any new scene, please place the scene in the test folder. Then in ibrnet/data_loaders/scene_test.py, change the factor=1 in line 57 according to the resolution you choose. Also please change folder_path in line 30. According to the type of input degradation, change the degradation type in line 103. For example scenes, please checkout assets/example. After making the following changes, run: 
 
-To evaluate Low-Light Enhancement Results on Real Data
+```bash
+# Accordingly change the scene name in the eval.sh
+bash eval.sh
+```
+
+<!-- To evaluate Low-Light Enhancement Results on Real Data
 ```bash
 # On Aleth-NeRF Dataset
 bash eval_scripts/eval_aleth.sh 
@@ -159,7 +167,7 @@ bash eval_scripts/eval_real_motion.sh
 To evaluate Haze Removal Results on REVIDE-Haze Real Dataset
 ```bash
 bash eval_scripts/eval_revidehaze.sh 
-```
+``` -->
 
 The code has been recently tidied up for release and could perhaps contain tiny bugs. Please feel free to open an issue.
 
@@ -169,10 +177,10 @@ The code has been recently tidied up for release and could perhaps contain tiny 
 If you find our work/code implementation useful for your own research, please cite our paper.
 
 ```
-@article{gupta2024gsn,
+@inproceedings{gupta2024gaura,
   title={GAURA: Generalizable Approach for Unified Restoration and Rendering of Arbitrary Views},
-  author={Gupta, Vinayak and Girish, Rongali and Varma, Mukund T and Tewari, Ayush and Mitra, Kaushik},
-  journal={arXiv preprint arXiv:2402.04632},
-  year={2024}
+  author={Gupta, Vinayak and Girish, Rongali Simhachala Venkata and Mukund Varma, T and Tewari, Ayush and Mitra, Kaushik},
+  booktitle={ECCV},
+  year={2024},
 }
 ```
